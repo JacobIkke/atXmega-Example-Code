@@ -27,23 +27,23 @@ void timer_TC0_8PWM_init(void){
 	TCC2.CTRLE = TC2_BYTEM_SPLITMODE_gc; // Enable split mode (TC2) 
 
 	TCC2.CTRLB = 1 << TC2_HCMPDEN_bp    // High Byte CompareD Enable 
-				| 1 << TC2_HCMPCEN_bp  // High Byte CompareC Enable
-				| 1 << TC2_HCMPBEN_bp  // High Byte CompareB Enable
-				| 1 << TC2_HCMPAEN_bp  // High Byte CompareA Enable
-				| 1 << TC2_LCMPDEN_bp  // Low Byte Compare D Enable
-				| 1 << TC2_LCMPCEN_bp  // Low Byte Compare C Enable
-				| 1 << TC2_LCMPBEN_bp  // Low Byte Compare B Enable
-				| 1 << TC2_LCMPAEN_bp; // Low Byte Compare A Enable
+			| 1 << TC2_HCMPCEN_bp  // High Byte CompareC Enable
+			| 1 << TC2_HCMPBEN_bp  // High Byte CompareB Enable
+			| 1 << TC2_HCMPAEN_bp  // High Byte CompareA Enable
+			| 1 << TC2_LCMPDEN_bp  // Low Byte Compare D Enable
+			| 1 << TC2_LCMPCEN_bp  // Low Byte Compare C Enable
+			| 1 << TC2_LCMPBEN_bp  // Low Byte Compare B Enable
+			| 1 << TC2_LCMPAEN_bp; // Low Byte Compare A Enable
 				
 	// Enable or disable waveform output
 	TCC2.CTRLC = 1 << TC2_HCMPD_bp // High Byte Compare D Waveform Output
-				| 1 << TC2_HCMPC_bp // High Byte Compare C Waveform Output 
-				| 1 << TC2_HCMPB_bp // High Byte Compare B Waveform Output
-				| 1 << TC2_HCMPA_bp // High Byte Compare A Waveform Output
-				| 1 << TC2_LCMPD_bp // Low Byte Compare D Waveform Output
-				| 1 << TC2_LCMPC_bp // Low Byte Compare C Waveform Output
-				| 1 << TC2_LCMPB_bp // Low Byte Compare B Waveform Output
-				| 1 << TC2_LCMPA_bp; // Low Byte Compare A Waveform Output
+			| 1 << TC2_HCMPC_bp // High Byte Compare C Waveform Output 
+			| 1 << TC2_HCMPB_bp // High Byte Compare B Waveform Output
+			| 1 << TC2_HCMPA_bp // High Byte Compare A Waveform Output
+			| 1 << TC2_LCMPD_bp // Low Byte Compare D Waveform Output
+			| 1 << TC2_LCMPC_bp // Low Byte Compare C Waveform Output
+			| 1 << TC2_LCMPB_bp // Low Byte Compare B Waveform Output
+			| 1 << TC2_LCMPA_bp; // Low Byte Compare A Waveform Output
 
 	TCC2.LCNT = 0;		// Set low CNT, default is 0, bottom update
 	TCC2.HCNT = 0;		// Set high CNT, default is 0, bottom update
@@ -93,15 +93,15 @@ void timer_TCE_4PWM_init(){
 	PORTE.OUTSET = 0x00;
 
 	TCE0.CTRLB = 1 << TC0_CCDEN_bp 
-				| 1 << TC0_CCCEN_bp 
-				| 1 << TC0_CCBEN_bp 
-				| 1 << TC0_CCAEN_bp 
-				| TC_WGMODE_SS_gc;  // Single Slope 
+			| 1 << TC0_CCCEN_bp 
+			| 1 << TC0_CCBEN_bp 
+			| 1 << TC0_CCAEN_bp 
+			| TC_WGMODE_SS_gc;  // Single Slope 
 
 	TCE0.CTRLC = 1 << TC0_CMPD_bp   
-				| 1 << TC0_CMPC_bp  // Compare Output enable 
-				| 1 << TC0_CMPB_bp 
-				| 1 << TC0_CMPA_bp;
+			| 1 << TC0_CMPC_bp  // Compare Output enable 
+			| 1 << TC0_CMPB_bp 
+			| 1 << TC0_CMPA_bp;
 
 	TCE0.CNT = 0x0000; 
 	TCE0.PER = 0xffff; 
