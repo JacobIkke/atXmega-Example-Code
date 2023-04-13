@@ -61,23 +61,23 @@ void timer_TD0_8PWM_init(void){
 	TCD2.CTRLE = TC2_BYTEM_SPLITMODE_gc; // Timer/Counter split into two 8-bit Counters (TC2) 
 	
 	TCD2.CTRLB = 1 << TC2_HCMPDEN_bp	// High Byte CompareD 
-				| 1 << TC2_HCMPCEN_bp	// High Byte CompareC 
-				| 1 << TC2_HCMPBEN_bp	// High Byte CompareB 
-				| 1 << TC2_HCMPAEN_bp	// High Byte CompareA 
-				| 1 << TC2_LCMPDEN_bp	// Low Byte Compare D 
-				| 1 << TC2_LCMPCEN_bp	// Low Byte Compare C 
-				| 1 << TC2_LCMPBEN_bp	// Low Byte Compare B 
-				| 1 << TC2_LCMPAEN_bp;	// Low Byte Compare A 
+			| 1 << TC2_HCMPCEN_bp	// High Byte CompareC 
+			| 1 << TC2_HCMPBEN_bp	// High Byte CompareB 
+			| 1 << TC2_HCMPAEN_bp	// High Byte CompareA 
+			| 1 << TC2_LCMPDEN_bp	// Low Byte Compare D 
+			| 1 << TC2_LCMPCEN_bp	// Low Byte Compare C 
+			| 1 << TC2_LCMPBEN_bp	// Low Byte Compare B 
+			| 1 << TC2_LCMPAEN_bp;	// Low Byte Compare A 
 
 	// Enable or disable waveform output
 	TCD2.CTRLC = 1 << TC2_HCMPD_bp		// High Byte Compare D Waveform Output 
-				| 1 << TC2_HCMPC_bp		// High Byte Compare C Waveform Output 
-				| 1 << TC2_HCMPB_bp		// High Byte Compare B Waveform Output 
-				| 1 << TC2_HCMPA_bp		// High Byte Compare A Waveform Output 
-				| 1 << TC2_LCMPD_bp		// Low Byte Compare D Waveform Output 
-				| 1 << TC2_LCMPC_bp		// Low Byte Compare C Waveform Output 
-				| 1 << TC2_LCMPB_bp		// Low Byte Compare B Waveform Output  
-				| 1 << TC2_LCMPA_bp;	// Low Byte Compare A Waveform Output 
+			| 1 << TC2_HCMPC_bp	// High Byte Compare C Waveform Output 
+			| 1 << TC2_HCMPB_bp	// High Byte Compare B Waveform Output 
+			| 1 << TC2_HCMPA_bp	// High Byte Compare A Waveform Output 
+			| 1 << TC2_LCMPD_bp	// Low Byte Compare D Waveform Output 
+			| 1 << TC2_LCMPC_bp	// Low Byte Compare C Waveform Output 
+			| 1 << TC2_LCMPB_bp	// Low Byte Compare B Waveform Output  
+			| 1 << TC2_LCMPA_bp;	// Low Byte Compare A Waveform Output 
 
 
 	TCD2.LCNT = 0;		// Set low CNT, default is 0, bottom update
@@ -114,40 +114,41 @@ int main(void){
 	timer_TC0_8PWM_init();
 	timer_TD0_8PWM_init();
 	timer_TCE_4PWM_init();
-	
+
 	uint8_t cnt0 = 0;
 	uint8_t cnt_dir = 1;
 	uint16_t cnt1;
-    while (1){	
+	
+    	while (1){	
 		
 		//8 x 8-bit PWM signals
 		TCC2.LCMPA = cnt0; // PC0 = PWM1
 		TCC2.LCMPB = cnt0; // PC1 = PWM2
 		TCC2.LCMPC = cnt0; // PC2 = PWM3
 		TCC2.LCMPD = cnt0; // PC3 = PWM4
-		
+
 		TCC2.HCMPA = cnt0; // PC4 = PWM5
 		TCC2.HCMPB = cnt0; // PC5 = PWM6
 		TCC2.HCMPC = cnt0; // PC6 = PWM7
 		TCC2.HCMPD = cnt0; // PC7 = PWM8
-		
+
 		//8 x 8-bit PWM signals
 		TCD2.LCMPA = cnt0; // PD0 = PWM9
 		TCD2.LCMPB = cnt0; // PD1 = PWM10
 		TCD2.LCMPC = cnt0; // PD2 = PWM11
 		TCD2.LCMPD = cnt0; // PD3 = PWM12	
-			
+
 		TCD2.HCMPA = cnt0; // PD4 = PWM13
 		TCD2.HCMPB = cnt0; // PD5 = PWM14
 		TCD2.HCMPC = cnt0; // PD6 = PWM15
 		TCD2.HCMPD = cnt0; // PD7 = PWM16
-		
+
 		//4 x 16-bit PWM signals
 		TCE0.CCA = cnt1; //PE0 = PWM17
 		TCE0.CCB = cnt1; //PE1 = PWM18
 		TCE0.CCC = cnt1; //PE2 = PWM19
 		TCE0.CCD = cnt1; //PE3 = PWM20
-		
+
 		cnt0++;
 		cnt1 = 256 * cnt0; 
 		_delay_ms(30);
@@ -155,7 +156,7 @@ int main(void){
 		if (cnt0 >= 192){
 			cnt0 = 0;
 		}
-    }
+    	}
 }
 
 // All the PWM compare registers 
