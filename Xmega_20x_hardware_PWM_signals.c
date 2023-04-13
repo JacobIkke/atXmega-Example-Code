@@ -10,13 +10,13 @@
 #include <util/delay.h>
 
 void set_clock_32Mhz_asm(){
-	asm("LDI R24,0xD8 \n OUT 0x34,R24 \n"); 
-	asm("LDI R24,0x02 \n STS 0x0050,R24 \n");
-	asm("LDS R24,0x0051 \n SBRS R24,1 \n RJMP .-8 \n"); 
-	asm("LDI R24,0x01 \n STS 0x0060,R24 \n");
-	asm("LDI R25,0xD8 \n OUT 0x34,R25 \n "); 
-	asm("LDI R24,0x01 \n STS 0x0040,R24 \n"); 
-	asm("LDS R24,0x0050	 \n ANDI R24,0xFE \n STS 0x0050,R24	\n"); 
+	asm("LDI R24,0xD8 \n OUT 0x34,R24 \n");  // Handshake 
+	asm("LDI R24,0x02 \n STS 0x0050,R24 \n"); // Enable the internal 32MHz oscillator
+	asm("LDS R24,0x0051 \n SBRS R24,1 \n RJMP .-8 \n"); // Wait for 32MHz oscillator to stabilize
+	asm("LDI R24,0x01 \n STS 0x0060,R24 \n"); // Enable DFLL defaults to calibrate against internal 32Khz clock
+	asm("LDI R25,0xD8 \n OUT 0x34,R25 \n "); // Handshake 
+	asm("LDI R24,0x01 \n STS 0x0040,R24 \n"); // Switch to 32MHz clock and enables it
+	asm("LDS R24,0x0050 \n ANDI R24,0xFE \n STS 0x0050,R24 \n"); // Disable 2Mhz oscillator
 }
 
 void timer_TC0_8PWM_init(void){
