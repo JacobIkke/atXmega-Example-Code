@@ -5,7 +5,7 @@
  * Author : PeetHobby @PeetGaming
  */ 
 
-#define F_CPU 32000000		// 2MHz default clock
+#define F_CPU 32000000		// 32MHz clock
 #include <avr/io.h>
 #include <util/delay.h>
 
